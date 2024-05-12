@@ -30,10 +30,6 @@ conda install -p /work/geisingerlab/conda_env/blast_corr biopython
 # $ cat input/accessions.txt 
 # CP012004.1
 # CP012005.1
-# CP079931.1
-# CP079933.1
-# CP079934.1
-# CP079932.1
 
 # Code to grab multiple genbank files
 # made a file containing genbank CPxxxxxx accessions
