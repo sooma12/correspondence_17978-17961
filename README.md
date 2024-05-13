@@ -41,3 +41,10 @@ deactivate
 ##  Get sequences
 
 
+## BLAST
+
+<info here>
+
+To format:
+- Wrote a "first_line.txt" file containing tab-separated info about blast outfmt6
+- concatenated first_line.txt and the 3 blast output files
