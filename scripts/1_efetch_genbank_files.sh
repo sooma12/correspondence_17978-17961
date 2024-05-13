@@ -21,6 +21,7 @@ echo `cat ./accessions.txt`
 mkdir -p $GENBANK_DIR
 
 module load anaconda3
+conda init bash
 conda activate /work/geisingerlab/conda_env/blast_corr
 
 for i in `cat ./accessions.txt`; do efetch -db nucleotide -id ${i} -format gb > ${GENBANK_DIR}/${i}.gb ; done
