@@ -15,6 +15,9 @@ import pathlib
 def main():
     genbank_dir = get_var_from_config(config_filename="./config.cfg", varname="GENBANK_DIR")
     fasta_dir = get_var_from_config(config_filename="./config.cfg", varname="FASTA_DIR")
+    if not os.path.exists(fasta_dir):
+        os.makedirs(fasta_dir)
+
     file_paths = []
     for folder, subs, files in os.walk(genbank_dir):
         for filename in files:
