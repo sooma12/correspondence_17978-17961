@@ -1,7 +1,7 @@
 # Correspondence table construction: ATCC 17978 vs. 17961
-For use with Palethorpe et al bfmRS data and connection to 17978-mff genome file NZ_CP012004
+For use with Palethorpe *et al* (2022) bfmRS data and connection to 17978-mff genome file NZ_CP012004
 
-17961 Genbank file downloaded from: https://www.ncbi.nlm.nih.gov/nuccore/CP065432
+From Palethorpe: Gene names and locus tags in the text have been updated to the identifiers found in the completed genome sequence for strain ATCC 17961 (GenBank accession numbers CP065432 [chromosome], CP065433 [pAB17961-1], and CP065434 [pAB17961-2]) (72)
 
 - Parse CP065432 genbank file (17961) with Biopython -> get locus tags and protein sequences
 - Make 17978-mff BLAST database
@@ -26,25 +26,12 @@ conda install -p /work/geisingerlab/conda_env/blast_corr biopython
 ```
 
 ##  Get sequences
-```bash
-# $ cat input/accessions.txt 
-# CP012004.1
-# CP012005.1
 
-# Code to grab multiple genbank files
-# made a file containing genbank CPxxxxxx accessions
-for i in `cat accessions.txt`; do efetch -db nucleotide -id ${i} -format gb > ${i}.gb ; done
-```
-
-## try source config file
-
-********
-
-
-
-## Get correspondence with BLAST:
-https://www.metagenomics.wiki/tools/blast/blastn-output-format-6
-
-
+## PLAN on 5/12/24:
+1. Write script to get sequences (get genbank files)
+2. Run gb -> fa script to make fasta amino acid files for both 17978 and 17961 (need one for makeblastdb)
+3. Make blastdb from 17978 protein fasta file
+4. Blast 17961 fasta vs. 17978 blastdb
+5. Parse blast results and make correspondence table
 
 
