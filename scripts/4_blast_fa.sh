@@ -25,5 +25,5 @@ blast_one_fa () {
 for file in "${QUERY_FASTAS[@]}"; do
   file_base_name=$(basename $file)
   file_root_name=${file_base_name%%.fa}
-  blast_one_fa $file $OUTPUT_DATABASE ${file_root_name}.blastout6
+  blast_one_fa $file $OUTPUT_DATABASE ${BLAST_OUT_PATH}/${file_root_name}.blastout6
 done
