@@ -12,6 +12,7 @@ From Palethorpe: Gene names and locus tags in the text have been updated to the 
 
 ## Setup
 
+Creating conda environment for fetching genbank files and BLAST:
 ```bash
 srun --partition=express --nodes=1 --cpus-per-task=2 --pty --time=00:60:00 /bin/bash
 module load anaconda3
@@ -25,13 +26,18 @@ conda install -p /work/geisingerlab/conda_env/blast_corr ncbi-datasets-cli
 conda install -p /work/geisingerlab/conda_env/blast_corr biopython
 ```
 
-##  Get sequences
+python venv for biopython:
+```bash
+PROJECT_DIR=/work/geisingerlab/Mark/correspondence_tables_17978/correspondence_17978-17961
+python3 -m venv $PROJECT_DIR/venv
+source $PROJECT_DIR/venv/bin/activate
+which python  # verify that this points to the venv python
 
-## PLAN on 5/12/24:
-1. Write script to get sequences (get genbank files)
-2. Run gb -> fa script to make fasta amino acid files for both 17978 and 17961 (need one for makeblastdb)
-3. Make blastdb from 17978 protein fasta file
-4. Blast 17961 fasta vs. 17978 blastdb
-5. Parse blast results and make correspondence table
+
+python3 -m pip freeze
+deactivate
+```
+
+##  Get sequences
 
 

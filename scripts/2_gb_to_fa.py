@@ -2,21 +2,28 @@
 """
 Make a .fa file from genbank via biopython
 Technique comes from https://warwick.ac.uk/fac/sci/moac/people/students/peter_cock/python/genbank2fasta/
+NOTE: need to load biopython.  Use `conda activate /work/geisingerlab/conda_env/blast_corr`
 """
 
 
 from Bio import SeqIO
 import os
 import sys
+import pathlib
 
 
 def main():
     genbank_dir = get_var_from_config(config_filename="./config.cfg", varname="GENBANK_DIR")
-    for input_file in os.listdir(genbank_dir):
-        file_name = os.path.splitext(os.path.basename(input_file))[0]
-        output_file = file_name + '.fa'
+    fasta_dir = get_var_from_config(config_filename="./config.cfg", varname="FASTA_DIR")
+    file_paths = []
+    for folder, subs, files in os.walk(genbank_dir):
+        for filename in files:
+            file_paths.append(os.path.abspath(os.path.join(folder, filename)))
 
-        write_genbank_to_fa(input_filename=input_file, output_filename=output_file)
+    for input_filepath in file_paths:
+        file_base = pathlib.Path(input_filepath).stem
+        output_path = os.path.join(fasta_dir, (file_base + '.fa')
+        write_genbank_to_fa(input_filename=input_filepath, output_filename=output_path)
 
 
 def write_genbank_to_fa(input_filename: str, output_filename: str):

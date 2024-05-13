@@ -6,7 +6,7 @@
 
 {
 if [ ! -f ./accessions.txt ]; then
-    echo "Missing ./accessions.txt file containing "
+    echo "Missing ./accessions.txt file containing accession numbers for Genbank files"
     exit 0
 fi
 }
