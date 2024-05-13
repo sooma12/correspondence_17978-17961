@@ -10,8 +10,12 @@ conda activate /work/geisingerlab/conda_env/blast_corr
 
 source ./config.cfg
 
-echo "Genome fasta file to make blast protein db: $TARGET_REF_GENOME_FA"
+echo 'Genome fasta files to make blast protein db:' "${REF_FASTAS[@]}"
 echo "blast db output directory: $OUT_DIR"
 echo "output database name: $OUTPUT_DATABASE"
 
-makeblastdb -in $TARGET_REF_GENOME_FA -out $OUTPUT_DATABASE -parse_seqids -dbtype prot
+echo "Merging fastas" "${REF_FASTAS[@]}"
+cat "${REF_FASTAS[@]}" > $MERGED_FASTA
+echo "Merged fasta saved to $MERGED_FASTA"
+
+makeblastdb -in $MERGED_FASTA -out $OUTPUT_DATABASE -parse_seqids -dbtype prot
