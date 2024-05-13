@@ -22,7 +22,4 @@ echo "merging query fastas"
 concatenated_queries=$(cat "${QUERY_FASTAS[@]}")
 
 
-blastp -query $concatenated_queries -db $OUTPUT_DATABASE \
-    -max_target_seqs 1 \
-    -outfmt 6 -evalue 1e-5 -num_threads 4 \
-    1>$OUTFILE
+blastp -query $concatenated_queries -db $OUTPUT_DATABASE -max_target_seqs 1 -outfmt 6 -evalue 1e-5 -num_threads 4 1>$OUTFILE
