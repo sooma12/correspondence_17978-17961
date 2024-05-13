@@ -22,7 +22,7 @@ def main():
 
     for input_filepath in file_paths:
         file_base = pathlib.Path(input_filepath).stem
-        output_path = os.path.join(fasta_dir, (file_base + '.fa')
+        output_path = os.path.join(fasta_dir, (file_base + '.fa'))
         write_genbank_to_fa(input_filename=input_filepath, output_filename=output_path)
 
 
