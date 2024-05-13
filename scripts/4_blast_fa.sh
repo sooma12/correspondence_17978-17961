@@ -12,8 +12,6 @@ source ./config.cfg
 
 mkdir -p $BLAST_OUT_PATH
 
-BLAST_OUT_PATH=${BLAST_OUTPUT}/blast_output
-
 echo "Query fasta files" "${QUERY_FASTAS[@]}"
 echo "Blastdb for reference genome: $OUTPUT_DATABASE"
 echo "Saving BLAST output to: $BLAST_OUT_PATH"
