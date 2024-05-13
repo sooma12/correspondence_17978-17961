@@ -10,7 +10,7 @@ conda activate /work/geisingerlab/conda_env/blast_corr
 
 source ./config.cfg
 
-mkdir -p $BLAST_OUTPUT
+mkdir -p $BLAST_OUT_PATH
 
 BLAST_OUT_PATH=${BLAST_OUTPUT}/blast_output
 
@@ -27,5 +27,5 @@ blast_one_fa () {
 for file in "${QUERY_FASTAS[@]}"; do
   file_base_name=$(basename $file)
   file_root_name=${file_base_name%%.fa}
-  blast_one_fa $file $OUTPUT_DATABASE $file_root_name
+  blast_one_fa $file $OUTPUT_DATABASE ${file_root_name}.blastout6
 done
