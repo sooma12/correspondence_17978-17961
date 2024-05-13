@@ -12,14 +12,20 @@ source ./config.cfg
 
 mkdir -p $BLAST_OUTPUT
 
-OUTFILE=${BLAST_OUTPUT}/blast_output
+BLAST_OUT_PATH=${BLAST_OUTPUT}/blast_output
 
 echo "Query fasta files" "${QUERY_FASTAS[@]}"
 echo "Blastdb for reference genome: $OUTPUT_DATABASE"
-echo "Saving BLAST output to: $OUTFILE"
+echo "Saving BLAST output to: $BLAST_OUT_PATH"
 
-echo "merging query fastas"
-concatenated_queries=$(cat "${QUERY_FASTAS[@]}")
+# Define function.
+# 3 arguments: blast_one_fa (ONE QUERY FA) (DATABASE) (OUTPUT)
+blast_one_fa () {
+  blastp -query $1 -db $2 -max_target_seqs 1 -outfmt 6 -evalue 1e-5 -num_threads 4 1>$3
+}
 
-
-blastp -query $concatenated_queries -db $OUTPUT_DATABASE -max_target_seqs 1 -outfmt 6 -evalue 1e-5 -num_threads 4 1>$OUTFILE
+for file in "${QUERY_FASTAS[@]}"; do
+  file_base_name=$(basename $file)
+  file_root_name=${file_base_name%%.fa}
+  blast_one_fa $file $OUTPUT_DATABASE $file_root_name
+done
