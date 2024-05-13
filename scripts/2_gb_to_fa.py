@@ -40,9 +40,10 @@ def write_genbank_to_fa(input_filename: str, output_filename: str):
         print(f'converting GenBank record {seq_record.id}')
         for seq_feature in seq_record.features:
             if seq_feature.type == "CDS":
-                assert len(seq_feature.qualifiers['translation']) == 1
-                output_handle.write(
-                    f">{seq_feature.qualifiers['locus_tag'][0]} from {seq_record.name}\n{seq_feature.qualifiers['translation'][0]}\n")
+                if 'pseudo' not in seq_feature.qualifiers.keys():  # Skip pseudogenes which are typed "CDS" but lack a translation qualifier
+                    assert len(seq_feature.qualifiers['translation']) == 1
+                    output_handle.write(
+                        f">{seq_feature.qualifiers['locus_tag'][0]} from {seq_record.name}\n{seq_feature.qualifiers['translation'][0]}\n")
 
     output_handle.close()
     input_handle.close()
