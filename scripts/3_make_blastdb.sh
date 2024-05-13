@@ -14,6 +14,8 @@ echo 'Genome fasta files to make blast protein db:' "${REF_FASTAS[@]}"
 echo "blast db output directory: $OUT_DIR"
 echo "output database name: $OUTPUT_DATABASE"
 
+mkdir -p $OUT_DIR
+
 echo "Merging fastas" "${REF_FASTAS[@]}"
 cat "${REF_FASTAS[@]}" > $MERGED_FASTA
 echo "Merged fasta saved to $MERGED_FASTA"
